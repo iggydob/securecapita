@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: securecapita
+  datasource:
+    username: postgres
+    password: password
+    url: jdbc:postgresql://34.65.60.216/securecapita
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
