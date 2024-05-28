@@ -113,6 +113,7 @@ public class HandleException extends ResponseEntityExceptionHandler implements E
     @ExceptionHandler(Exception.class)
     public ResponseEntity<HttpResponse> exception(Exception exception) {
         log.error(exception.getMessage());
+        System.out.println(exception);
         return new ResponseEntity<>(
                 HttpResponse.builder()
                         .timeStamp(now().toString())

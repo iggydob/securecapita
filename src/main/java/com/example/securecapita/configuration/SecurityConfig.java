@@ -43,7 +43,11 @@ public class SecurityConfig {
 
     private static final String[] PUBLIC_URLS = {
             "/user/login/**",
-            "/user/verify/code/**"
+            "/user/verify/code/**",
+            "/user/verify/password/**",
+            "/user/verify/account/**",
+            "/user/register/**",
+            "/user/resetpassword/**"
     };
 
     @Bean

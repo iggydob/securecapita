@@ -1,14 +1,14 @@
 package com.example.securecapita.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
 @Setter
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserDTO {
     private Long userId;
     private String firstName;
@@ -23,4 +23,6 @@ public class UserDTO {
     private boolean isNotLocked;
     private boolean isUsingMfa;
     private LocalDateTime createdAt;
+    private String roleName;
+    private String permissions;
 }
