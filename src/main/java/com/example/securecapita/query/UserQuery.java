@@ -18,4 +18,10 @@ public class UserQuery {
     public static final String DELETE_VERIFICATION_BY_URL_QUERY = "DELETE FROM securecapita.reset_password_verifications WHERE url = :url";
     public static final String SELECT_USER_BY_ACCOUNT_URL_QUERY = "SELECT * FROM securecapita.users where user_id = (SELECT user_id from securecapita.account_verifications WHERE url = :url)";
     public static final String UPDATE_USER_ENABLED_QUERY = "UPDATE securecapita.users SET enabled = :enabled WHERE user_id = :userId";
+    public static final String UPDATE_USER_DETAILS_QUERY = "UPDATE securecapita.users SET first_name = :firstName, last_name = :lastName, email = :email, phone = :phone, address = :address, title = :title, bio = :bio WHERE user_id =:userId";
+    public static final String SELECT_USER_BY_ID_QUERY = "SELECT * FROM securecapita.users WHERE user_id = :userId";
+    public static final String UPDATE_USER_PASSWORD_BY_ID_QUERY = "UPDATE securecapita.users SET password = :password WHERE user_id = :userId";
+    public static final String UPDATE_USER_SETTINGS_QUERY = "UPDATE securecapita.users SET enabled = :enabled, non_locked = :notLocked WHERE user_id = :userId";
+    public static final String TOGGLE_USER_MFA_QUERY = "UPDATE securecapita.users SET using_mfa = :isUsingMfa WHERE email =:email";
+    public static final String UPDATE_USER_IMAGE_QUERY = "UPDATE securecapita.users SET image_url = :imageUrl WHERE user_id =:userId";
 }

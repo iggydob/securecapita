@@ -42,12 +42,14 @@ public class SecurityConfig {
     private final CustomAuthorizationFilter customAuthorizationFilter;
 
     private static final String[] PUBLIC_URLS = {
+            "/user/verify/password/**",
             "/user/login/**",
             "/user/verify/code/**",
-            "/user/verify/password/**",
-            "/user/verify/account/**",
             "/user/register/**",
-            "/user/resetpassword/**"
+            "/user/resetpassword/**",
+            "/user/verify/account/**",
+            "/user/refresh/token/**",
+            "/user/image/**"
     };
 
     @Bean

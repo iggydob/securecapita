@@ -3,11 +3,13 @@ package com.example.securecapita.service.implementation;
 import com.example.securecapita.domain.Role;
 import com.example.securecapita.domain.User;
 import com.example.securecapita.dto.UserDTO;
+import com.example.securecapita.form.UpdateForm;
 import com.example.securecapita.repository.RoleRepository;
 import com.example.securecapita.repository.UserRepository;
 import com.example.securecapita.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import static com.example.securecapita.dtomapper.UserDTOMapper.fromUser;
 
@@ -55,6 +57,41 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO verifyAccountKey(String key) {
         return mapToUserDTO(userRepository.verifyAccountKey(key));
+    }
+
+    @Override
+    public UserDTO updateUserDetails(UpdateForm user) {
+        return mapToUserDTO(userRepository.updateUserDetails(user));
+    }
+
+    @Override
+    public UserDTO getUserById(Long userId) {
+        return mapToUserDTO(userRepository.get(userId));
+    }
+
+    @Override
+    public void updatePassword(Long userId, String currentPassword, String newPassword, String confirmNewPassword) {
+        userRepository.updatePassword(userId, currentPassword, newPassword, confirmNewPassword);
+    }
+
+    @Override
+    public void updateUserRole(Long userId, String roleName) {
+        roleRepository.updateUserRole(userId, roleName);
+    }
+
+    @Override
+    public void updateAccountSettings(Long userId, Boolean enabled, Boolean notLocked) {
+        userRepository.updateAccountSettings(userId, enabled, notLocked);
+    }
+
+    @Override
+    public UserDTO toggleMfa(String email) {
+        return mapToUserDTO(userRepository.toggleMfa(email));
+    }
+
+    @Override
+    public void updateImage(UserDTO userDto, MultipartFile image) {
+        userRepository.updateImage(userDto, image);
     }
 
     private UserDTO mapToUserDTO(User user) {

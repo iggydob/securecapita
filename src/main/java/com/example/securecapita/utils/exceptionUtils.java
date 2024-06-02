@@ -16,8 +16,7 @@ import org.springframework.security.authentication.LockedException;
 import java.io.OutputStream;
 
 import static java.time.LocalDateTime.now;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
@@ -27,9 +26,11 @@ public class exceptionUtils {
                 || exception instanceof DisabledException
                 || exception instanceof LockedException
                 || exception instanceof BadCredentialsException
-                || exception instanceof InvalidClaimException
-                || exception instanceof TokenExpiredException) {
+                || exception instanceof InvalidClaimException) {
             HttpResponse httpResponse = getHttpResponse(response, exception.getMessage(), BAD_REQUEST);
+            writeResponse(response, httpResponse);
+        } else if (exception instanceof TokenExpiredException) {
+            HttpResponse httpResponse = getHttpResponse(response, exception.getMessage(), UNAUTHORIZED);
             writeResponse(response, httpResponse);
         } else {
             HttpResponse httpResponse = getHttpResponse(response, "An error occurred. Please try again.", INTERNAL_SERVER_ERROR);
